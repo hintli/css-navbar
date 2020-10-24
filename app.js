@@ -21,12 +21,19 @@ app.get('/about', (req,res) => {
     res.render('site/about');
 })
 
-app.get('/about', (req,res) => {
-    res.sendFile(path.resolve(__dirname,'site/about.html'))
+app.get('/contact', (req,res) => {
+    res.render('site/contact')
 })
 
-app.get('/blog', (req,res) => {
-    res.sendFile(path.resolve(__dirname,'site/blog.html'))
+app.get('/login', (req,res) => {
+    res.render('site/login')
 })
+
+app.get('/register', (req,res) => {
+    res.render('site/register')
+})
+
+
+
 
 app.listen(3002)

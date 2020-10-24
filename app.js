@@ -1,6 +1,14 @@
 const path = require('path');
 const express = require('express')
 const app = express()
+
+
+app.use(express.static('public'))
+
+// app.use('/test',(req,res,next) => {
+//     console.log('Middleware')
+//     next();
+// })
  
 app.get('/', function (req, res) {
     res.sendFile(path.resolve('./index.html'));

@@ -11,10 +11,33 @@ const Post = require('./models/Post')
   useCreateIndex: true
 });
 
-Post.create({
-    title : 'My First Title',
-    content : 'My First Content',
+// Post.create({
+//     title : 'My Second Title',
+//     content : 'My Second Content'
+// },(error,data) => {
+//     console.log(error,data)
+// })
 
-},(error,post) => {
-    console.log(error,post);
+
+
+// Post.find({
+//     title : "My First Title",
+// },(error,data) => {
+//     console.log(error, data)
+// })
+
+// Post.findById('5f95540ee122e5174ff5337f',
+// (error,data) => {
+//     console.log(error, data)
+// })
+
+// Post.findByIdAndUpdate('5f95540ee122e5174ff5337f',
+// { title : "Güncellenmiş Title"},
+// (error,data) => {
+//     console.log(error, data)
+// })
+
+Post.findByIdAndDelete('5f9559859f09e31a884a04d1',(
+error,data) => {
+    console.log(error, data)
 })

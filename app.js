@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express ()
 const exphbs  = require('express-handlebars');
+const Handlebars = require('handlebars')
+const expressHandlebars = require('express-handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const mongoose = require('mongoose');
 const main = require('./routes/main');
 const posts = require('./routes/posts');
@@ -29,12 +32,16 @@ const path = require('path')
 
 app.use(express.static('public'))
 
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.engine("handlebars", expressHandlebars({
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+  }), exphbs());
+  app.set("view engine", "handlebars");
+  
 
 
 
 
-app.listen(3002,()=>{
-    console.log("server listening on 3002");
+
+app.listen(3004,()=>{
+    console.log("server listening on 3004");
 });

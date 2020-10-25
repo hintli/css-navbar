@@ -3,10 +3,19 @@ const app = express ()
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
 const main = require('./routes/main');
+const posts = require('./routes/posts');
+var bodyParser = require('body-parser')
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
 
 
 app.use('/',main)
+app.use('/posts',posts)
 
  
  mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
@@ -26,6 +35,6 @@ app.set('view engine', 'handlebars');
 
 
 
-app.listen(3000,()=>{
-    console.log("server listening on 3000");
+app.listen(3002,()=>{
+    console.log("server listening on 3002");
 });

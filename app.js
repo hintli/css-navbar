@@ -8,10 +8,21 @@ const mongoose = require('mongoose');
 const main = require('./routes/main');
 const posts = require('./routes/posts');
 var bodyParser = require('body-parser')
+const fileUpload=require('express-fileupload');
+
+
+mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
+
+app.use(fileUpload())
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
- 
+
 // parse application/json
 app.use(bodyParser.json())
 
@@ -21,12 +32,8 @@ app.use('/',main)
 app.use('/posts',posts)
 
  
- mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
+
+
 
 const path = require('path')
 
@@ -39,9 +46,12 @@ app.engine("handlebars", expressHandlebars({
   
 
 
+  
+//veritabanı bağlantısı altında ver herhangi bir request vermeden
 
 
 
-app.listen(3004,()=>{
-    console.log("server listening on 3004");
+app.listen(3006,()=>{
+    console.log("server listening on 3006");
 });
+

@@ -2,11 +2,14 @@ const express = require('express')
 const app = express ()
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
- 
-// Connection URL
+const main = require('./routes/main');
+
+
+
+app.use('/',main)
 
  
-await mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
+ mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -20,29 +23,7 @@ app.use(express.static('public'))
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-app.get('/', (req,res) => {
-    res.render('site/index');
-})
 
-app.get('/blog', (req,res) => {
-    res.render('site/blog');
-})
-
-app.get('/about', (req,res) => {
-    res.render('site/about');
-})
-
-app.get('/contact', (req,res) => {
-    res.render('site/contact')
-})
-
-app.get('/login', (req,res) => {
-    res.render('site/login')
-})
-
-app.get('/register', (req,res) => {
-    res.render('site/register')
-})
 
 
 app.listen(3000,()=>{

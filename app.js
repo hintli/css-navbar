@@ -1,28 +1,16 @@
 const express = require('express')
 const app = express ()
 const exphbs  = require('express-handlebars');
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+const mongoose = require('mongoose');
  
 // Connection URL
-const url = 'mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority';
- 
-// Database Name
-const dbName = 'myproject';
- 
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  //assert.equal(null, err);
 
-  if(err){
-      console.log("vtye bağlanırken hata oluştu");
-  }
-
-  console.log("Connected successfully to server");
  
-  const dblabilir = client.dob(dbName);
- 
-  client.close();//
+await mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
 });
 
 const path = require('path')
@@ -57,6 +45,6 @@ app.get('/register', (req,res) => {
 })
 
 
-app.listen(1453,()=>{
-    console.log("server listening on 5000");
+app.listen(3000,()=>{
+    console.log("server listening on 3000");
 });

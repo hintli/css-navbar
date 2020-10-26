@@ -16,10 +16,10 @@ router.post('/test', (req,res) => {
 
     post_image.mv(path.resolve(__dirname, '../public/img/postimages',post_image.name))
     
-    console.log(req.files.post_image.name);
+    console.log(req.files);
     Post.create({
         ...req.body,
-        post_İmage: `/public/img/postimages/${post_image.name}`    
+        post_image: `img/postimages/${post_image.name}`    
     });
     res.redirect('/')
 })

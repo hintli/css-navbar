@@ -5,8 +5,7 @@ const Handlebars = require('handlebars')
 const expressHandlebars = require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const mongoose = require('mongoose');
-const main = require('./routes/main');
-const posts = require('./routes/posts');
+const path = require('path')
 var bodyParser = require('body-parser')
 const fileUpload=require('express-fileupload');
 
@@ -27,6 +26,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
+// const myMiddleware = (req,res,next) => {
+//   console.log("Mıddleware çalıştı")
+//   next()
+// }
+// app.use('/',myMiddleware)
+
+
+
+const main = require('./routes/main');
+const posts = require('./routes/posts');
 
 app.use('/',main)
 app.use('/posts',posts)
@@ -35,7 +44,7 @@ app.use('/posts',posts)
 
 
 
-const path = require('path')
+
 
 app.use(express.static('public'))
 
@@ -46,12 +55,12 @@ app.engine("handlebars", expressHandlebars({
   
 
 
-  
+
 //veritabanı bağlantısı altında ver herhangi bir request vermeden
 
 
 
-app.listen(3006,()=>{
-    console.log("server listening on 3006");
+app.listen(3000,()=>{
+    console.log("server listening on 3000");
 });
 

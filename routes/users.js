@@ -17,10 +17,12 @@ router.get('/login', (req,res) => {
 
 router.post('/login',(req,res) => {
     const {email,password} = req.body;
-
     Users.findOne({email},(error,user) => {
         if(user) {
             //session
+            req.session.userId = user._id;
+            console.log(req.session)
+
             if(user.password === password) {
                 res.redirect('/')
             }else {

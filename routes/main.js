@@ -3,12 +3,12 @@ const router = express.Router()
 const Post = require('../models/Post')
 
 router.get('/', (req,res) => {
+    console.log(req.session)
     res.render('site/index');
 })
 
 router.get('/blog', (req,res) => {
     Post.find({}).then(posts => {
-        console.log(posts)
         res.render('site/blog',{posts:posts})
     })
     

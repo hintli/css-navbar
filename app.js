@@ -9,6 +9,8 @@ const path = require('path')
 var bodyParser = require('body-parser')
 const fileUpload=require('express-fileupload');
 //const generateDate = require('./helpers/generateDate').generateDate
+const expressSession = require('express-session')
+const connectMongo = require('connect-mongo')
 
 mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -16,6 +18,17 @@ mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/clu
   useFindAndModify: false,
   useCreateIndex: true
 });
+
+const mongoStore = connectMongo(expressSession)
+
+app.use(expressSession({
+  secret: 'testotesto',
+  resave: false,
+  saveUninitialized: true,
+  store: new mongoStore({mongooseConnection: mongoose.connection})
+}))
+
+
 //veritabanı bağlantısı altında ver herhangi bir request vermeden
 app.use(fileUpload())
 
@@ -64,7 +77,7 @@ app.engine("handlebars", expressHandlebars({
 
 
 
-app.listen(3003,()=>{
-    console.log("server listening on 3003");
+app.listen(3005,()=>{
+    console.log("server listening on 3005");
 });
 

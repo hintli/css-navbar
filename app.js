@@ -16,7 +16,7 @@ mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/clu
   useFindAndModify: false,
   useCreateIndex: true
 });
-
+//veritabanı bağlantısı altında ver herhangi bir request vermeden
 app.use(fileUpload())
 
 
@@ -36,9 +36,14 @@ app.use(bodyParser.json())
 
 const main = require('./routes/main');
 const posts = require('./routes/posts');
+const users = require('./routes/users');
+
+
 
 app.use('/',main)
 app.use('/posts',posts)
+app.use('/users',users)
+
 
  
 
@@ -56,11 +61,10 @@ app.engine("handlebars", expressHandlebars({
 
 
 
-//veritabanı bağlantısı altında ver herhangi bir request vermeden
 
 
 
-app.listen(3002,()=>{
-    console.log("server listening on 3002");
+app.listen(3003,()=>{
+    console.log("server listening on 3003");
 });
 

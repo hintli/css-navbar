@@ -19,7 +19,7 @@ router.post('/test', (req,res) => {
     console.log(req.files);
     Post.create({
         ...req.body,
-        post_image: `img/postimages/${post_image.name}`    
+        post_image: `/img/postimages/${post_image.name}`    
     });
     res.redirect('/')
 })

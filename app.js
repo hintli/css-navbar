@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const path = require('path')
 var bodyParser = require('body-parser')
 const fileUpload=require('express-fileupload');
-
+//const generateDate = require('./helpers/generateDate').generateDate
 
 mongoose.connect('mongodb+srv://emre:esmeremre860@cluster0.vz2em.mongodb.net/cluster0?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -44,7 +44,7 @@ app.use('/posts',posts)
 
 
 
-
+//{helpers:{generateDate:generateDate}}
 
 app.use(express.static('public'))
 
@@ -60,7 +60,7 @@ app.engine("handlebars", expressHandlebars({
 
 
 
-app.listen(3000,()=>{
-    console.log("server listening on 3000");
+app.listen(3002,()=>{
+    console.log("server listening on 3002");
 });
 
